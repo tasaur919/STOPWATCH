@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopWatch</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      header {
+        min-height: 200px;
+        width: 1200px;
+        background: linear-gradient(45deg, red, orange, rgb(255, 0, 166));
+        border: none;
+        border-radius: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px auto;
+        margin: 30px auto;
+        box-shadow: 0px 0px 10px white;
+      }
+      .a {
+        height: 250px;
+        width: 250px;
+        float: left;
+        border: 15px solid blue;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin: 25px;
+        box-shadow: 0px 0px 25px blue inset;
+        font-size: 120px;
+        text-align: center;
+      }
+      p {
+        font-size: 40px;
+        font-weight: 600;
+      }
+      center {
+        display: flex;
+        margin: 0px 500px;
+      }
+      .t {
+        height: 90px;
+        width: 220px;
+        background: linear-gradient(
+          45deg,
+          green,
+          rgb(162, 241, 15),
+          green,
+          rgb(36, 148, 85)
+        );
+        color: white;
+        font-size: 40px;
+        font-weight: 800;
+        border-radius: 10px;
+        margin: 20px auto;
+        gap: 10px;
+        box-shadow: 0px 0px 35px rgb(205, 255, 152);
+      }
+      #b:hover {
+        color: black;
+        cursor: pointer;
+      }
+      #bt:hover {
+        background: linear-gradient(
+          45deg,
+          rgb(252, 32, 32),
+          rgb(240, 102, 38),
+          rgb(243, 76, 115),
+          rgb(252, 60, 6)
+        );
+        color: black;
+        cursor: pointer;
+      }
+      h1 {
+        color: white;
+        font-size: 60px;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>STOP-WATCH</h1>
+    </center>
+    <header>
+      <div class="a">
+        <b id="h">00</b>
+        <p>Hours</p>
+      </div>
+      <div class="a">
+        <b id="m">00</b>
+        <p>Minutes</p>
+      </div>
+      <div class="a">
+        <b id="s">00</b>
+        <p>Second</p>
+      </div>
+      <div class="a">
+        <b id="ms">00</b>
+        <p>ML.Second</p>
+      </div>
+    </header>
+    <center>
+      <input type="button" onclick="demo1()" id="b" class="t" value="START" />
+      <input type="button" onclick="demo2()" id="bt" class="t" value="RESET" />
+    </center>
+    <script>
+      var h = 0;
+      var m = 0;
+      var s = 0;
+      var ms = 0;
+      var hh = document.getElementById("h");
+      var mm = document.getElementById("m");
+      var ss = document.getElementById("s");
+      var mls = document.getElementById("ms");
+      function demo() {
+        ms++;
+        if (ms == 1000) {
+          ms = 0;
+          s++;
+          if (s == 60) {
+            s = 0;
+            m++;
+            if (m == 60) {
+              m = 0;
+              h++;
+            }
+          }
+        }
+        if (h < 10) {
+          hh.innerHTML = "0" + h;
+        } else {
+          hh.innerHTML = h;
+        }
+
+        if (m < 10) {
+          mm.innerHTML = "0" + m;
+        } else {
+          mm.innerHTML = m;
+        }
+
+        if (s < 10) {
+          ss.innerHTML = "0" + s;
+        } else {
+          ss.innerHTML = s;
+        }
+
+        if (ms < 10) {
+          mls.innerHTML = "000" + ms;
+        } else if (ms < 100) {
+          mls.innerHTML = "00" + ms;
+        } else {
+          mls.innerHTML = ms;
+        }
+      }
+
+      function demo1() {
+        var b1 = document.getElementById("b");
+        if (b1.value == "START") {
+          b1.value = "STOP";
+          b1.style.background = "red";
+          b1.style.color = "black";
+          window.a = window.setInterval(demo, 1); //we create a variable with winsow which is use an other block of code.
+        } else {
+          b1.value = "START";
+          b1.style.background =
+            "linear-gradient(45deg, green,rgb(162, 241, 15),green,rgb(36, 148, 85))";
+          b1.style.color = "white";
+          window.clearInterval(a);
+        }
+      }
+
+      function demo2() {
+        hh.innerHTML = "00";
+        mm.innerHTML = "00";
+        ss.innerHTML = "00";
+        mls.innerHTML = "00";
+      }
+    </script>
+  </body>
+</html>
